@@ -3,35 +3,36 @@
 {% block content %}
 <h1>Selected: </h1>
 
-
 <div class="flex flex-wrap">
 
-    {% if album.title %}
-        <div class="flex">
-            <h2>{{ albums.title }}</h2>
-        </div>
-    {% endif %}
+    <div class="flex flex-wrap">
 
-    {% if album.artist_list %}
-        <div class="flex">
-            <div class="pr2"></div>
-            <div>{{ album.artist_list }}</div>
-        </div>
-    {% endif %}
+<div class="w-33 pa3">
+    <h2>{{ albums.title }}</h2>
 
-    {% if album.created_at %}
-        <div class="flex">
-            <div class="pr2"></div>
-            <div>{{ album.created_at }}</div>
-        </div>
-    {% endif %}
+    {% if albums.artist_list %}
+    <div class="flex">
+        <div class="pr2"></div>
+        <div>{{ albums.artist_list }}</div>
+    </div>
+{% endif %}
+
+{% if albums.created_at %}
+    <div class="flex">
+        <div class="pr2"></div>
+        <div>{{ albums.created_at }}</div>
+    </div>
+{% endif %}
 
     
 <br>    
 <p><a href="{% url 'list_albums' %}"> Back To View Albums</a></p>
 <br>
-<p><a href="{% url 'add_album' %}">Add Album</a></p>
+<a href="{% url 'edit_album' pk=albums.pk %}">Edit Album</a>
+<br>    
+<a href="{% url 'delete_album' pk=albums.pk %}">Delete Album</a>
 
     </div>
 </div>  
+
 {% endblock %}

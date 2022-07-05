@@ -6,7 +6,7 @@
 <div>
   <form action="{% url 'delete_album' pk=albums.pk %}" method="POST">
     {% csrf_token %}
-    <p>Do you want to delete {{ Album.title }}?</p>
+    <p>Do you want to delete {{ albums.title }}?</p>
     <div>
     <button type="submit">Delete Album</button>
     <br>

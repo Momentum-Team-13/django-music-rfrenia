@@ -26,6 +26,7 @@ def add_album(request):
         if forms.is_valid():
             forms.save()
             return redirect(to="list_albums")
+
     return render(request, "RyansMusic/add_album.html", 
                     {"forms": forms})
 
@@ -43,11 +44,13 @@ def edit_album(request, pk):
     albums = get_object_or_404(Album, pk=pk)
     if request.method == "GET":
         forms = AlbumForm(instance=albums)
+
     else:
         forms = AlbumForm(data=request.POST, instance=albums)
         if forms.is_valid():
             forms.save()
             return redirect(to="list_albums")
+
     return render(request, "RyansMusic/edit_album.html", 
                     {"forms": forms, "albums": albums})
 
