@@ -6,7 +6,7 @@
 <div>
   <form action="{% url 'edit_album' pk=albums.pk %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ forms.as_p }}
     <div>
       <button type="submit">Update Album</button>
     </div>
