@@ -10,30 +10,20 @@
         <div class="w-33 pa3">
             <h2><a href="{% url 'album_detail' pk=album.pk %}">{{ album.title }}</a></h2>
 
-    {% if album.artist %}
+    {% if album.artist_list %}
         <div class="flex">
             <div class="pr2"></div>
-            <div>{{ album.artist }}</div>
+            <div>{{ album.artist_list }}</div>
         </div>
     {% endif %}
 
-    {% if album.year %}
+    {% if album.created_at %}
         <div class="flex">
             <div class="pr2"></div>
-            <div>{{ album.year }}</div>
+            <div>{{ album.created_at }}</div>
         </div>
     {% endif %}
-
-    {% if notes %}
-        <div class="flex">
-            {% for note in notes %}
-            <div class="pr2">
-                <div>{{ note.note }}</div>
-            </div>
-        </div>
-    {% endfor %}
-    {% endif %}
-
+   
     <p>
         <div class="options">
 

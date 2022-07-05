@@ -13,6 +13,7 @@ def list_albums(request):
 
 def album_detail(request, pk):
     albums = get_object_or_404(Album, pk=pk)
+
     return render(request, "RyansMusic/album_detail.html", 
                     {"albums": albums})
 
@@ -22,7 +23,6 @@ def add_album(request):
         forms = AlbumForm()
     else:
         forms = AlbumForm(data=request.POST)
-
         if forms.is_valid():
             forms.save()
             return redirect(to="list_albums")

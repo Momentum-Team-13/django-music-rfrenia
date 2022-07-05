@@ -8,21 +8,21 @@
 
     {% if album.title %}
         <div class="flex">
-            <h2>{{ album.title }}</h2>
+            <h2>{{ albums.title }}</h2>
         </div>
     {% endif %}
 
-    {% if album.artist %}
+    {% if album.artist_list %}
         <div class="flex">
             <div class="pr2"></div>
-            <div>{{ album.artist }}</div>
+            <div>{{ album.artist_list }}</div>
         </div>
     {% endif %}
 
-    {% if album.year %}
+    {% if album.created_at %}
         <div class="flex">
             <div class="pr2"></div>
-            <div>{{ album.year }}</div>
+            <div>{{ album.created_at }}</div>
         </div>
     {% endif %}
 
