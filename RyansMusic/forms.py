@@ -1,5 +1,5 @@
 from django import forms
-from .models import Album
+from .models import Album, Favorite
 #from .models import Artist
 
 
@@ -9,7 +9,6 @@ class AlbumForm(forms.ModelForm):
         fields = [
             'title',
             'artist_list',
-            'created_at',
         ]
 
 # class ArtistForm(forms.ModelForm):
@@ -19,3 +18,11 @@ class AlbumForm(forms.ModelForm):
 #             'artist',
 #             'name',
 #         ]
+
+class FavoriteForm(forms.ModelForm):
+    class Meta:
+        model = Favorite
+        fields = [
+            #'user',
+            'album',
+        ]

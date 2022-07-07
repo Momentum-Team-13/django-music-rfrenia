@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
+from django.conf.urls.static import static
 from RyansMusic import views as RyansMusic_views
 
 
@@ -26,5 +27,10 @@ urlpatterns = [
     path('RyansMusic/<int:pk>', RyansMusic_views.album_detail, name='album_detail'),
     path('RyansMusic/<int:pk>/edit', RyansMusic_views.edit_album, name='edit_album'),
     path('RyansMusic/<int:pk>/delete', RyansMusic_views.delete_album, name='delete_album'),
-] 
-#+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('RyansMusic/<int:pk>/add_fav', RyansMusic_views.add_favorite, name='add_favorite'),
+    path('RyansMusic/<int:pk>/delete_fav', RyansMusic_views.delete_favorite, name='delete_favorite'),
+]
+
+
+if settings.DEBUG: 
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

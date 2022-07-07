@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
-from .models import Album
-from .forms import AlbumForm
+from .models import Album, Favorite
+from .forms import AlbumForm, FavoriteForm
 from django.shortcuts import get_object_or_404
 
 
 def list_albums(request):
     albums = Album.objects.all()
-
+    favorite_albums = [album for album in albums if album.check_is_user_favorite(request.user)]
     return render(request, "RyansMusic/list_albums.html", 
-                    {"albums": albums})
+                    {"albums":albums, "favorite_albums":favorite_albums})
 
 
 def album_detail(request, pk):
@@ -53,5 +53,28 @@ def edit_album(request, pk):
 
     return render(request, "RyansMusic/edit_album.html", 
                     {"forms": forms, "albums": albums})
+
+
+def add_favorite(request, pk):
+    album = get_object_or_404(Album, pk=pk)
+    if request.method == "GET":
+        form = FavoriteForm
+    else:
+        form = FavoriteForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='list_albums')
+    return render(request, "RyansMusic/add_favorite.html", {"form":form, "album":album})
+
+
+def delete_favorite(request, pk):
+    album = get_object_or_404(Album, pk=pk) 
+    favorite = album.favorites.get(user=request.user)
+    if request.method == 'GET':
+        return render(request, "RyansMusic/delete_favorite.html", {"album":album, "pk":pk})
+    if request.method == 'POST':
+        favorite.delete()
+        return redirect(to='list_albums')
+    return render(request, "RyansMusic/delete_favorite.html", {"album":album})
 
 
