@@ -5,10 +5,10 @@
 
 <form action="{% url 'delete_favorite' pk=album.pk %}" method="POST">
     {% csrf_token %}
-    <p>DO you want to remove from favorites?</p>
+    <p>Do you want to delete {{ album.title }} from favorites?</p>
     <div class="card-content">
         <button type="submit">Yes, delete favorite</button><br />
-        <a href="{% url 'album_details' pk=album.pk %}">Cancel</a>
+        <a href="{% url 'album_detail' pk=album.pk %}">Cancel</a>
     </div>
 </form>
 
