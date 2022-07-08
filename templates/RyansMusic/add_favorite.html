@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div>Add Favorite</div>
+<div><b>Add Favorite</b></div>
 <form action="{% url 'add_favorite' pk=album.pk %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}

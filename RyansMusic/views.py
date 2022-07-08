@@ -69,7 +69,7 @@ def add_favorite(request, pk):
 
 def delete_favorite(request, pk):
     album = get_object_or_404(Album, pk=pk) 
-    favorite = album.favorites.get(user=request.user)
+    favorite = album.favorites.get()
     if request.method == 'GET':
         return render(request, "RyansMusic/delete_favorite.html", {"album":album, "pk":pk})
     if request.method == 'POST':

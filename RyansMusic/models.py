@@ -25,7 +25,7 @@ class Album(models.Model):
 
 
 class User(AbstractUser):
-    pass
+    user_name = models.TextField(max_length=255, blank=True)
 
 
 class Favorite(models.Model):
